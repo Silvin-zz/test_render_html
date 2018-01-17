@@ -1,0 +1,11 @@
+<strong><%= @user["name"] %></strong>
+
+<tbody>
+   <% @user["products"].each do |item|%>
+    <tr>    <td>Name:</td>  <th><%= item["name"]  %></th></tr>
+    <tr>    <td>Cost:</td>  <th><%= item["cost"]  %></th></tr>
+    <tr>    <td>Tax:</td>   <th><%= item["tax"]   %></th></tr>
+    <tr>    <td>Total:</td> <th><%= item["total"] %></th></tr>
+   
+   <% end %>
+</tbody>
