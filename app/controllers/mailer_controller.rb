@@ -19,6 +19,8 @@ class MailerController < ActionController::API
         ]
         
         data = ApplicationController.render ('mailer/data'),assigns: { user: user }
+        mailer = Mailer::API.new
+        mailer.prueba
         
         render json: {"uno": data}, status: 200
         
