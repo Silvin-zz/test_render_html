@@ -19,8 +19,17 @@ class MailerController < ActionController::API
         ]
         
         data = ApplicationController.render ('mailer/data'),assigns: { user: user }
-        mailer = Mailer::API.new
-        mailer.send_email
+        begin
+            mailer = Mailer::API.new(to: 'bravocado@gmail.com', 
+                                    subject: 'saludos', 
+                                    template: 'A123')
+            mailer.add_template_params(name: 'name'     , value: 'Silvio Bravo Cado')
+            mailer.add_template_params(name: 'address'  , value: 'Norte 2')
+            mailer.add_custom_param(template_name: 'A123', variable_name: 'producto', values: {})
+            mailer.send
+        rescue => e 
+            p(e.message)
+        end
         
         render json: {"uno": data}, status: 200
         
